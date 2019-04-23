@@ -4,8 +4,13 @@ package com.example.demo;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
@@ -46,9 +51,36 @@ public class DialogflowRestController {
        }
    }
    
-   @GetMapping("/webhook")
-   public String webhookTesting() throws IOException {
-	   System.out.println("webhook testing works");
-	   return "webhook testing works";
+   @RequestMapping(method = RequestMethod.POST, value = "/webhook")
+   public TestingResponse dialogFlowWebHook(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
+
+	   IntentResponse inRes =new IntentResponse();
+	   TestingResponse testing = new TestingResponse();
+	   testing.setSpeech("TESTING WORKS FINE");
+	   return testing;
+//       try {
+//           String email = servletRequest.getHeader("username");
+//           String password = servletRequest.getHeader("password");
+//           this.userController.authenticate(new User(email,password,null,null));
+//
+//           GoogleCloudDialogflowV2WebhookResponse response = new GoogleCloudDialogflowV2WebhookResponse();
+//           GoogleCloudDialogflowV2WebhookRequest request = jacksonFactory.createJsonParser(requestStr).parse(GoogleCloudDialogflowV2WebhookRequest.class);
+//
+//           Map<String,Object> params = request.getQueryResult().getParameters();
+//           if (params.size() > 0) {
+//               response.setFulfillmentText(dialogFlowController.processMessage(params));
+//           }
+//           else {
+//               response.setFulfillmentText("Sorry you didn't send enough to process");
+//           }
+//
+//           return new ResponseEntity<GoogleCloudDialogflowV2WebhookResponse>(response,HttpStatus.OK);
+//       }
+//       catch (Exception ex) {
+//           return new ResponseEntity<Object>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+//       }
+
    }
+   
+   
 }
