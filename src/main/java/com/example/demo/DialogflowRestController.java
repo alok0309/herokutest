@@ -66,14 +66,12 @@ public class DialogflowRestController {
 	   
 	   FulfillmentMessages fulfillmentMessages1 = new FulfillmentMessages();
 	   
-	   List<Text> text = new ArrayList<Text>();
 	   
 	   Text txt = new Text();
-	   txt.setText(Arrays.asList("alok testing"));
+	   txt.settextChild(Arrays.asList("alok testing"));
+
 	   
-	   text.add(txt);
-	   
-	   fulfillmentMessages1.setText(text);
+	   fulfillmentMessages1.setText(txt);
 	   
 	   List <FulfillmentMessages> messages = new ArrayList();
 	   messages.add(fulfillmentMessages1);
@@ -126,14 +124,12 @@ public class DialogflowRestController {
 
 	   FulfillmentMessages fulfillmentMessages1 = new FulfillmentMessages();
 	   
-	   List<Text> text = new ArrayList<Text>();
 	   
 	   Text txt = new Text();
-	   txt.setText(Arrays.asList("alok testing"));
+	   txt.settextChild(Arrays.asList("alok testing"));
+
 	   
-	   text.add(txt);
-	   
-	   fulfillmentMessages1.setText(text);
+	   fulfillmentMessages1.setText(txt);
 	   
 	   List <FulfillmentMessages> messages = new ArrayList();
 	   messages.add(fulfillmentMessages1);
@@ -142,7 +138,7 @@ public class DialogflowRestController {
 	   res.setFulfillmentText("fulfillmentText");
 	   res.setSource("source");
 	   res.setFulfillmentMessages(messages);
-	   
+	   res.setSpeech("speech dsfsafdsf works fine");
 	   return res;
    
    }
@@ -192,27 +188,27 @@ public class DialogflowRestController {
 	  }
   
    class FulfillmentMessages{
-	   List<Text> text;
+	   Text text;
 
-	public List<Text> getText() {
+	public Text getText() {
 		return text;
 	}
 
-	public void setText(List<Text> text) {
+	public void setText(Text text) {
 		this.text = text;
 	}
    }
    
    
    class Text{
-	   List<String> text;
+	   List<String> textChild;
 
-	public List<String> getText() {
-		return text;
+	public List<String> gettextChild() {
+		return textChild;
 	}
 
-	public void setText(List<String> text) {
-		this.text = text;
+	public void settextChild(List<String> text) {
+		this.textChild = text;
 	}
    }
 
