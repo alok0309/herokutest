@@ -52,11 +52,11 @@ public class DialogflowRestController {
    }
    
    @RequestMapping(method = RequestMethod.POST, value = "/webhook")
-   public TestingResponse dialogFlowWebHook(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
+   public TestingResponse dialogFlowWebHookPOST(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
 
 	   IntentResponse inRes =new IntentResponse();
 	   TestingResponse testing = new TestingResponse();
-	   testing.setSpeech("TESTING WORKS FINE");
+	   testing.setSpeech("TESTING WORKS FINE POST response");
 	   return testing;
 //       try {
 //           String email = servletRequest.getHeader("username");
@@ -81,6 +81,14 @@ public class DialogflowRestController {
 //       }
 
    }
-   
+
+   @RequestMapping(method = RequestMethod.GET, value = "/webhook")
+   public TestingResponse dialogFlowWebHookGET(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
+
+	   IntentResponse inRes =new IntentResponse();
+	   TestingResponse testing = new TestingResponse();
+	   testing.setSpeech("TESTING WORKS FINE GET response");
+	   return testing;
+   }
    
 }
