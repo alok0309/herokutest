@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,8 @@ import com.google.cloud.dialogflow.v2.TextInput;
 import com.google.cloud.dialogflow.v2.TextInput.Builder;
 import com.google.cloud.dialogflow.v2beta1.WebhookResponse;
 
+import com.example.demo.service.DailogFlowDemoDAL;
+
 @RestController
 public class DialogflowRestController {
 
@@ -31,6 +34,10 @@ public class DialogflowRestController {
    private final String LANG_CODE = "en-US";
    private final String PROJECT_ID = "mitelvicebottest14apr";
    private String sessionId = UUID.randomUUID().toString();
+   
+   @Autowired
+   DailogFlowDemoDAL dailogFlowDemoDAL;
+   
 //   private final String credential = "dialogflow-akepbv@mitelvicebottest14apr.iam.gserviceaccount.com";
 //   private final String URL = "https://dialogflow.googleapis.com/v2/{session=projects/MY_PROJECT_ID/agent/sessions/" +
 //           sessionId + "}:detectIntent";
@@ -66,10 +73,11 @@ public class DialogflowRestController {
 //	   return testing;
 	   String queryText =null;
 	   String action = null;
-	   
+	   String response =null;
 	   if(requestStr.getQueryResult() != null) {
 		    queryText = requestStr.getQueryResult().getQueryText();
-	   		action = requestStr.getQueryResult().getAction();		   
+	   		action = requestStr.getQueryResult().getAction();		
+	   		response = dailogFlowDemoDAL.getUserByQueryTextAndAction(queryText, action);
 	   }
 
 	   
@@ -81,8 +89,8 @@ public class DialogflowRestController {
 	  
 	   
 	   SimpleResponse sis1 = new SimpleResponse();
-	   sis1.setTextToSpeech("textToSpeech"+"-------->"+queryText+"---->"+action);
-	   sis1.setDisplayText("working perfect Alok"+"-------->"+queryText+"---->"+action);
+	   sis1.setTextToSpeech("textToSpeech"+"-------->"+queryText+"---->"+action+"----respose---->"+response);
+	   sis1.setDisplayText("working perfect Alok"+"-------->"+queryText+"---->"+action+"----respose---->"+response);
 	   
 	   List<SimpleResponse> simpleResponses = new ArrayList();
 	   simpleResponses.add(sis1);
