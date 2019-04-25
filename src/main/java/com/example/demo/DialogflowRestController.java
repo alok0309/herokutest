@@ -64,8 +64,15 @@ public class DialogflowRestController {
 //	   TestingResponse testing = new TestingResponse();
 //	   testing.setSpeech("TESTING WORKS FINE POST response");
 //	   return testing;
+	   String queryText =null;
+	   String action = null;
 	   
-	
+	   if(requestStr.getQueryResult() != null) {
+		    queryText = requestStr.getQueryResult().getQueryText();
+	   		action = requestStr.getQueryResult().getAction();		   
+	   }
+
+	   
 	   ResponseJson2 res2 = new ResponseJson2();
 	   res2.setFulfillmentText("it is working very good alok");
 	   
@@ -74,8 +81,8 @@ public class DialogflowRestController {
 	  
 	   
 	   SimpleResponse sis1 = new SimpleResponse();
-	   sis1.setTextToSpeech("textToSpeech");
-	   sis1.setDisplayText("working perfect Alok");
+	   sis1.setTextToSpeech("textToSpeech"+"-------->"+queryText+"---->"+action);
+	   sis1.setDisplayText("working perfect Alok"+"-------->"+queryText+"---->"+action);
 	   
 	   List<SimpleResponse> simpleResponses = new ArrayList();
 	   simpleResponses.add(sis1);
