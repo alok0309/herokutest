@@ -57,36 +57,66 @@ public class DialogflowRestController {
    
    @RequestMapping(method = RequestMethod.POST, value = "/webhook")
 //   public TestingResponse dialogFlowWebHookPOST(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
-   public ResponseDailog dialogFlowWebHookPOST(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
-//	   IntentResponse inRes =new IntentResponse();
+//   public ResponseDailog dialogFlowWebHookPOST(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
+   public ResponseJson2 dialogFlowWebHookPOST(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
+
+   //	   IntentResponse inRes =new IntentResponse();
 //	   TestingResponse testing = new TestingResponse();
 //	   testing.setSpeech("TESTING WORKS FINE POST response");
 //	   return testing;
 	   
+	
+	   ResponseJson2 res2 = new ResponseJson2();
+	   res2.setFulfillmentText("fulfillmentText");
 	   
-	   FulfillmentMessages fulfillmentMessages1 = new FulfillmentMessages();
+	   FulfillmentMessage message = new FulfillmentMessage();
 	   
+	  
 	   
-	   Text txt = new Text();
-	   Speech spch = new Speech();
-	   spch.setSpeech("spch so inner");
+	   SimpleResponse sis1 = new SimpleResponse();
+	   sis1.setTextToSpeech("textToSpeech");
+	   sis1.setDisplayText("displayText");
 	   
-	   txt.settext(Arrays.asList(spch));
-	   txt.setSpeech("inside1");
+	   List<SimpleResponse> simpleResponses = new ArrayList();
+	   simpleResponses.add(sis1);
+	   
+	   SimpleResponses sisres = new SimpleResponses();
+	   sisres.setSimpleResponses(simpleResponses);
 
 	   
-	   fulfillmentMessages1.setText(txt);
-	   fulfillmentMessages1.setSpeech("inside2");
+	   message.setSimpleResponses(sisres);
 	   
-	   List <FulfillmentMessages> messages = new ArrayList();
-	   messages.add(fulfillmentMessages1);
 	   
-	   ResponseDailog res = new ResponseDailog();
-	   res.setFulfillmentText("fulfillmentText");
-	   res.setSource("source");
-	   res.setFulfillmentMessages(messages);
-	   res.setSpeech("speech outside fine");
-	   return res;
+	   List<FulfillmentMessage> finalMess = new ArrayList();
+	   finalMess.add(message);
+	   
+	   res2.setFulfillmentMessages(finalMess);
+	   
+	   return res2;
+	   
+//	   FulfillmentMessages fulfillmentMessages1 = new FulfillmentMessages();
+//	   
+//	   
+//	   Text txt = new Text();
+//	   Speech spch = new Speech();
+//	   spch.setSpeech("spch so inner");
+//	   
+//	   txt.settext(Arrays.asList(spch));
+//	   txt.setSpeech("inside1");
+//
+//	   
+//	   fulfillmentMessages1.setText(txt);
+//	   fulfillmentMessages1.setSpeech("inside2");
+//	   
+//	   List <FulfillmentMessages> messages = new ArrayList();
+//	   messages.add(fulfillmentMessages1);
+//	   
+//	   ResponseDailog res = new ResponseDailog();
+//	   res.setFulfillmentText("fulfillmentText");
+//	   res.setSource("source");
+//	   res.setFulfillmentMessages(messages);
+//	   res.setSpeech("speech outside fine");
+//	   return res;
 	   
 	   
 	   
