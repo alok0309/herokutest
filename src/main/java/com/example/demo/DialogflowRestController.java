@@ -22,6 +22,7 @@ import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.cloud.dialogflow.v2.TextInput;
 import com.google.cloud.dialogflow.v2.TextInput.Builder;
+import com.google.cloud.dialogflow.v2beta1.WebhookResponse;
 
 @RestController
 public class DialogflowRestController {
@@ -55,12 +56,37 @@ public class DialogflowRestController {
    }
    
    @RequestMapping(method = RequestMethod.POST, value = "/webhook")
-   public TestingResponse dialogFlowWebHookPOST(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
-
-	   IntentResponse inRes =new IntentResponse();
-	   TestingResponse testing = new TestingResponse();
-	   testing.setSpeech("TESTING WORKS FINE POST response");
-	   return testing;
+//   public TestingResponse dialogFlowWebHookPOST(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
+   public ResponseDailog dialogFlowWebHookPOST(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
+//	   IntentResponse inRes =new IntentResponse();
+//	   TestingResponse testing = new TestingResponse();
+//	   testing.setSpeech("TESTING WORKS FINE POST response");
+//	   return testing;
+	   
+	   
+	   FulfillmentMessages fulfillmentMessages1 = new FulfillmentMessages();
+	   
+	   List<Text> text = new ArrayList<Text>();
+	   
+	   Text txt = new Text();
+	   txt.setText(Arrays.asList("alok testing"));
+	   
+	   text.add(txt);
+	   
+	   fulfillmentMessages1.setText(text);
+	   
+	   List <FulfillmentMessages> messages = new ArrayList();
+	   messages.add(fulfillmentMessages1);
+	   
+	   ResponseDailog res = new ResponseDailog();
+	   res.setFulfillmentText("fulfillmentText");
+	   res.setSource("source");
+	   res.setFulfillmentMessages(messages);
+	   res.setSpeech("speech dsfsafdsf works fine");
+	   return res;
+	   
+	   
+	   
 //       try {
 //           String email = servletRequest.getHeader("username");
 //           String password = servletRequest.getHeader("password");
@@ -125,6 +151,15 @@ public class DialogflowRestController {
 	   private String fulfillmentText;
 	   List <FulfillmentMessages> fulfillmentMessages;
 	   private String source;
+	   String speech;
+
+	   public String getSpeech() {
+	   	return speech;
+	   }
+
+	   public void setSpeech(String speech) {
+	   	this.speech = speech;
+	   }
 	   
 	   // Getter Methods 
 
