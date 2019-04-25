@@ -68,7 +68,7 @@ public class DialogflowRestController {
 	   
 	   
 	   Text txt = new Text();
-	   txt.settextChild(Arrays.asList("alok testing"));
+	   txt.settext(Arrays.asList("alok testing"));
 
 	   
 	   fulfillmentMessages1.setText(txt);
@@ -126,7 +126,7 @@ public class DialogflowRestController {
 	   
 	   
 	   Text txt = new Text();
-	   txt.settextChild(Arrays.asList("alok testing"));
+	   txt.settext(Arrays.asList("alok testing"));
 
 	   
 	   fulfillmentMessages1.setText(txt);
@@ -201,14 +201,14 @@ public class DialogflowRestController {
    
    
    class Text{
-	   List<String> textChild;
+	   List<String> text;
 
-	public List<String> gettextChild() {
-		return textChild;
+	public List<String> gettext() {
+		return text;
 	}
 
-	public void settextChild(List<String> text) {
-		this.textChild = text;
+	public void settext(List<String> text) {
+		this.text = text;
 	}
    }
 
