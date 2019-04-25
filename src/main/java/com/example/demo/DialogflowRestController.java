@@ -68,7 +68,10 @@ public class DialogflowRestController {
 	   
 	   
 	   Text txt = new Text();
-	   txt.settext(Arrays.asList("alok testing"));
+	   Speech spch = new Speech();
+	   spch.setSpeech("spch so inner");
+	   
+	   txt.settext(Arrays.asList(spch));
 	   txt.setSpeech("inside1");
 
 	   
@@ -124,24 +127,25 @@ public class DialogflowRestController {
 
 	   
 
-	   FulfillmentMessages fulfillmentMessages1 = new FulfillmentMessages();
-	   
-	   
-	   Text txt = new Text();
-	   txt.settext(Arrays.asList("alok testing"));
-
-	   
-	   fulfillmentMessages1.setText(txt);
-	   
-	   List <FulfillmentMessages> messages = new ArrayList();
-	   messages.add(fulfillmentMessages1);
-	   
-	   ResponseDailog res = new ResponseDailog();
-	   res.setFulfillmentText("fulfillmentText");
-	   res.setSource("source");
-	   res.setFulfillmentMessages(messages);
-	   res.setSpeech("speech dsfsafdsf works fine");
-	   return res;
+//	   FulfillmentMessages fulfillmentMessages1 = new FulfillmentMessages();
+//	   
+//	   
+//	   Text txt = new Text();
+//	   txt.settext(Arrays.asList("alok testing"));
+//
+//	   
+//	   fulfillmentMessages1.setText(txt);
+//	   
+//	   List <FulfillmentMessages> messages = new ArrayList();
+//	   messages.add(fulfillmentMessages1);
+//	   
+//	   ResponseDailog res = new ResponseDailog();
+//	   res.setFulfillmentText("fulfillmentText");
+//	   res.setSource("source");
+//	   res.setFulfillmentMessages(messages);
+//	   res.setSpeech("speech dsfsafdsf works fine");
+//	   return res;
+	   return null;
    
    }
 }  
@@ -211,7 +215,7 @@ public class DialogflowRestController {
    
    
    class Text{
-	   List<String> text;
+	   List<Speech> text;
 	   String speech;
 
 	   public String getSpeech() {
@@ -221,13 +225,24 @@ public class DialogflowRestController {
 	   public void setSpeech(String speech) {
 	   	this.speech = speech;
 	   }
-	public List<String> gettext() {
+	public List<Speech> gettext() {
 		return text;
 	}
 
-	public void settext(List<String> text) {
+	public void settext(List<Speech> text) {
 		this.text = text;
 	}
+   }
+   
+   class Speech{
+	   String speech;
+	   public String getSpeech() {
+		   	return speech;
+		   }
+
+		   public void setSpeech(String speech) {
+		   	this.speech = speech;
+		   }
    }
 
 
