@@ -2,6 +2,9 @@ package com.example.demo;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -82,13 +85,100 @@ public class DialogflowRestController {
 
    }
 
-   @RequestMapping(method = RequestMethod.GET, value = "/webhook")
-   public TestingResponse dialogFlowWebHookGET(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
 
-	   IntentResponse inRes =new IntentResponse();
-	   TestingResponse testing = new TestingResponse();
-	   testing.setSpeech("TESTING WORKS FINE GET response");
-	   return testing;
+   
+   @RequestMapping(method = RequestMethod.GET, value = "/webhook")
+   //TestingResponse
+   public  ResponseDailog dialogFlowWebHookGET(@RequestBody IntentRequest requestStr,HttpServletRequest servletRequest) throws IOException {
+
+//	   IntentResponse inRes =new IntentResponse();
+//	   TestingResponse testing = new TestingResponse();
+//	   testing.setSpeech("TESTING WORKS FINE GET response");
+//	   return testing;
+
+	   
+
+	   FulfillmentMessages fulfillmentMessages1 = new FulfillmentMessages();
+	   
+	   List<Text> text = new ArrayList<Text>();
+	   
+	   Text txt = new Text();
+	   txt.setText(Arrays.asList("alok testing"));
+	   
+	   text.add(txt);
+	   
+	   fulfillmentMessages1.setText(text);
+	   
+	   List <FulfillmentMessages> messages = new ArrayList();
+	   messages.add(fulfillmentMessages1);
+	   
+	   ResponseDailog res = new ResponseDailog();
+	   res.setFulfillmentText("fulfillmentText");
+	   res.setSource("source");
+	   res.setFulfillmentMessages(messages);
+	   
+	   return res;
+   
+   }
+}  
+   class ResponseDailog {
+	   private String fulfillmentText;
+	   List <FulfillmentMessages> fulfillmentMessages;
+	   private String source;
+	   
+	   // Getter Methods 
+
+	   public String getFulfillmentText() {
+	    return fulfillmentText;
+	   }
+
+	   public String getSource() {
+	    return source;
+	   }
+
+	   // Setter Methods 
+
+	   public void setFulfillmentText(String fulfillmentText) {
+	    this.fulfillmentText = fulfillmentText;
+	   }
+
+	   public void setSource(String source) {
+	    this.source = source;
+	   }
+	   
+	   public List<FulfillmentMessages> getFulfillmentMessages() {
+		return fulfillmentMessages;
+		}
+	
+		public void setFulfillmentMessages(List<FulfillmentMessages> fulfillmentMessages) {
+			this.fulfillmentMessages = fulfillmentMessages;
+		}
+	
+	  }
+  
+   class FulfillmentMessages{
+	   List<Text> text;
+
+	public List<Text> getText() {
+		return text;
+	}
+
+	public void setText(List<Text> text) {
+		this.text = text;
+	}
    }
    
-}
+   
+   class Text{
+	   List<String> text;
+
+	public List<String> getText() {
+		return text;
+	}
+
+	public void setText(List<String> text) {
+		this.text = text;
+	}
+   }
+
+
