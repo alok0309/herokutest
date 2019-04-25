@@ -67,7 +67,7 @@ public class DialogflowRestController {
 	   
 	
 	   ResponseJson2 res2 = new ResponseJson2();
-	   res2.setFulfillmentText("fulfillmentText");
+	   res2.setFulfillmentText("it is working very good alok");
 	   
 	   FulfillmentMessage message = new FulfillmentMessage();
 	   
