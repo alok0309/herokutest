@@ -69,9 +69,11 @@ public class DialogflowRestController {
 	   
 	   Text txt = new Text();
 	   txt.settext(Arrays.asList("alok testing"));
+	   txt.setSpeech("inside1");
 
 	   
 	   fulfillmentMessages1.setText(txt);
+	   fulfillmentMessages1.setSpeech("inside2");
 	   
 	   List <FulfillmentMessages> messages = new ArrayList();
 	   messages.add(fulfillmentMessages1);
@@ -80,7 +82,7 @@ public class DialogflowRestController {
 	   res.setFulfillmentText("fulfillmentText");
 	   res.setSource("source");
 	   res.setFulfillmentMessages(messages);
-	   res.setSpeech("speech dsfsafdsf works fine");
+	   res.setSpeech("speech outside fine");
 	   return res;
 	   
 	   
@@ -189,7 +191,15 @@ public class DialogflowRestController {
   
    class FulfillmentMessages{
 	   Text text;
+	   String speech;
 
+	   public String getSpeech() {
+	   	return speech;
+	   }
+
+	   public void setSpeech(String speech) {
+	   	this.speech = speech;
+	   }
 	public Text getText() {
 		return text;
 	}
@@ -202,7 +212,15 @@ public class DialogflowRestController {
    
    class Text{
 	   List<String> text;
+	   String speech;
 
+	   public String getSpeech() {
+	   	return speech;
+	   }
+
+	   public void setSpeech(String speech) {
+	   	this.speech = speech;
+	   }
 	public List<String> gettext() {
 		return text;
 	}
